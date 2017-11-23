@@ -25,6 +25,7 @@ class MigrationVersionTableAbstractFactoryTest extends \PHPUnit_Framework_TestCa
         parent::setUp();
 
         $this->service_manager = new ServiceManager();
+        $this->service_manager->setAllowOverride(true);
         $this->service_manager->setService('migrations.versiontablegateway.foo',
             $this->getMock(TableGateway::class, [], [], '', false));
     }

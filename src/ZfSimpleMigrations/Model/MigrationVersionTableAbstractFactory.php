@@ -7,9 +7,12 @@ namespace ZfSimpleMigrations\Model;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use ZfSimpleMigrations\Library\Compatibility\ZF3AbstractFactoryTrait;
 
 class MigrationVersionTableAbstractFactory implements AbstractFactoryInterface
 {
+    use ZF3AbstractFactoryTrait;
+
     const FACTORY_PATTERN = '/migrations\.versiontable\.(.*)/';
     /**
      * Determine if we can create a service with name

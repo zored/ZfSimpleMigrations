@@ -8,9 +8,12 @@ use RuntimeException;
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\AbstractPluginManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use ZfSimpleMigrations\Library\Compatibility\ZF3AbstractFactoryTrait;
 
 class MigrationSkeletonGeneratorAbstractFactory implements AbstractFactoryInterface
 {
+    use ZF3AbstractFactoryTrait;
+
     const FACTORY_PATTERN = '/migrations\.skeletongenerator\.(.*)/';
     /**
      * Determine if we can create a service with name
@@ -36,9 +39,7 @@ class MigrationSkeletonGeneratorAbstractFactory implements AbstractFactoryInterf
      */
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
-        if ($serviceLocator instanceof AbstractPluginManager) {
-            $serviceLocator = $serviceLocator->getServiceLocator();
-        }
+        $serviceLocator = $this->getRootContainer($serviceLocator);
 
         preg_match(self::FACTORY_PATTERN, $name, $matches)
             || preg_match(self::FACTORY_PATTERN, $requestedName, $matches);

@@ -5,15 +5,17 @@ namespace ZfSimpleMigrations\Controller;
 
 
 use Zend\Console\Request;
-use Zend\Mvc\Router\Console\RouteMatch;
+use Zend\Mvc\Console\Router\RouteMatch;
 use Zend\ServiceManager\AbstractPluginManager;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use ZfSimpleMigrations\Library\Compatibility\ZF3FactoryTrait;
 use ZfSimpleMigrations\Library\Migration;
 use ZfSimpleMigrations\Library\MigrationSkeletonGenerator;
 
 class MigrateControllerFactory implements FactoryInterface
 {
+    use ZF3FactoryTrait;
 
     /**
      * Create service
@@ -23,10 +25,7 @@ class MigrateControllerFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        if($serviceLocator instanceof AbstractPluginManager)
-        {
-            $serviceLocator = $serviceLocator->getServiceLocator();
-        }
+        $serviceLocator = $this->getRootContainer($serviceLocator);
 
         /** @var RouteMatch $routeMatch */
         $routeMatch = $serviceLocator->get('Application')->getMvcEvent()->getRouteMatch();

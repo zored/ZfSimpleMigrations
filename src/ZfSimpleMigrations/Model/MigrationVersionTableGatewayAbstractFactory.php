@@ -8,9 +8,12 @@ use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use ZfSimpleMigrations\Library\Compatibility\ZF3AbstractFactoryTrait;
 
 class MigrationVersionTableGatewayAbstractFactory implements AbstractFactoryInterface
 {
+    use ZF3AbstractFactoryTrait;
+
     const FACTORY_PATTERN = '/migrations\.versiontablegateway\.(.*)/';
     /**
      * Determine if we can create a service with name
