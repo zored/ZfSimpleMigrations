@@ -4,21 +4,18 @@ namespace ZfSimpleMigrations\Library;
 
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Adapter\AdapterAwareInterface;
-use Zend\Db\Adapter\Driver\Pdo\Pdo;
 use Zend\Db\Adapter\Exception\InvalidQueryException;
 use Zend\Db\Metadata\Metadata;
 use Zend\Db\Sql\Ddl;
 use Zend\Db\Sql\Sql;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use ZfSimpleMigrations\Library\OutputWriter;
 use ZfSimpleMigrations\Model\MigrationVersion;
 use ZfSimpleMigrations\Model\MigrationVersionTable;
 
 /**
  * Main migration logic
  */
-class Migration implements ServiceLocatorAwareInterface
+class Migration
 {
     protected $migrationsDir;
     protected $migrationsNamespace;

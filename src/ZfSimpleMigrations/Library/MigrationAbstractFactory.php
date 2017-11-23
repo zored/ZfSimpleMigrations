@@ -7,10 +7,13 @@ use RuntimeException;
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\AbstractPluginManager;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use ZfSimpleMigrations\Library\Compatibility\ZF3AbstractFactoryTrait;
 use ZfSimpleMigrations\Model\MigrationVersionTable;
 
 class MigrationAbstractFactory implements AbstractFactoryInterface
 {
+    use ZF3AbstractFactoryTrait;
+
     const FACTORY_PATTERN = '/migrations\.migration\.(.*)/';
     /**
      * Determine if we can create a service with name
@@ -35,9 +38,7 @@ class MigrationAbstractFactory implements AbstractFactoryInterface
      */
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
-        if ($serviceLocator instanceof AbstractPluginManager) {
-            $serviceLocator = $serviceLocator->getServiceLocator();
-        }
+        $serviceLocator = $this->getRootContainer($serviceLocator);
 
         $config = $serviceLocator->get('Config');
 

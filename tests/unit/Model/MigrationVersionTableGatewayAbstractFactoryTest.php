@@ -20,6 +20,7 @@ class MigrationVersionTableGatewayAbstractFactoryTest extends \PHPUnit_Framework
         parent::setUp();
 
         $this->service_manager = new ServiceManager();
+        $this->service_manager->setAllowOverride(true);
         $this->service_manager->setService('foo',
             $this->getMock(Adapter::class, [], [], '', false));
     }
