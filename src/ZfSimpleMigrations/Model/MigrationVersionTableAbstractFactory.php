@@ -13,7 +13,7 @@ class MigrationVersionTableAbstractFactory implements AbstractFactoryInterface
 {
     use ZF3AbstractFactoryTrait;
 
-    const FACTORY_PATTERN = '/migrations\.versiontable\.(.*)/';
+    const FACTORY_PATTERN = '/migrations\.version-?table\.(.*)/';
     /**
      * Determine if we can create a service with name
      *

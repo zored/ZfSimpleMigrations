@@ -14,7 +14,7 @@ class MigrationVersionTableGatewayAbstractFactory implements AbstractFactoryInte
 {
     use ZF3AbstractFactoryTrait;
 
-    const FACTORY_PATTERN = '/migrations\.versiontablegateway\.(.*)/';
+    const FACTORY_PATTERN = '/migrations\.version-?table-?gateway\.(.*)/';
     /**
      * Determine if we can create a service with name
      *

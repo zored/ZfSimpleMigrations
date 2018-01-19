@@ -14,7 +14,7 @@ class MigrationSkeletonGeneratorAbstractFactory implements AbstractFactoryInterf
 {
     use ZF3AbstractFactoryTrait;
 
-    const FACTORY_PATTERN = '/migrations\.skeletongenerator\.(.*)/';
+    const FACTORY_PATTERN = '/migrations\.skeleton-?generator\.(.*)/';
     /**
      * Determine if we can create a service with name
      *
